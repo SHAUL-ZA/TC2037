@@ -12,7 +12,7 @@
 
 (define (arithmetic-lexer strng)
   " Call the function to validate using a specific DFA "
-  (evaluate-dfa (dfa delta-arithmetic 'start '(int float exp var spa par_open par_close)) strng))
+  (evaluate-dfa (dfa delta-arithmetic 'start '(int float exp var par_open par_close)) strng))
 
 (define (evaluate-dfa dfa-to-evaluate strng)
   " This function will verify if a string is acceptable by a DFA "
