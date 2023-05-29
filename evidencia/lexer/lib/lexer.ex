@@ -23,7 +23,7 @@ defmodule Lexer do
     arithmetic_op = ~r<^\*\*|^\/\/|^\+|^\-|^\*|^\/|^\%>
     assignment_op = ~r<^\=|^\*\*\=|^\/\/\=|^\+\=|^\-\=|^\*\=|^\/\=|^\%\=>
     comparison_op = ~r[^\=\=|^\!\=|^\>\=|^\<\=|^\>|^\<]
-    logical_op = ~r<and|or|not>
+    logical_op = ~r<^and|^or|^not>
     membership_op = ~r<^in|^not in>
     identity_op = ~r<^is|^is not>
     bitwise_op = ~r[^\||^\&|^\^|^\~|^\>\>|^\<\<]
@@ -38,7 +38,6 @@ defmodule Lexer do
     keyword = ~r<^def|^del|^None|^as|^assert|^break|^class|^continue|^for|^from|^global|^if|^elif|^else|^except|^finally|^import|^lambda|^nonlocal|^pass|^raise|^return|^try|^while|^with|^yield>
     method = ~r<^input|^print|^range|^len|^str|^int|^float|^bool|^list|^type>
 
-    marker_line([head | tail], )
 
   end
 
