@@ -9,10 +9,12 @@ defmodule Lexer do
     |> Stream.map(&marker_line/1)
     |> Enum.join("")
 
-    File.write(out_filename, data)
+    File.mkdir("../Web")
+    html_creation("../Web/highlighter.html")
+    css_creation("../Web/highlighter.css")
   end
 
-  def html_creation(htmlName) do
+  defp html_creation(htmlName) do
     htmlSkeleton = ~s(
       <!`DOCTYPE html>
       <html>
@@ -29,7 +31,7 @@ defmodule Lexer do
 
   end
 
-  def css_creation(cssName) do
+  defp css_creation(cssName) do
     cssSkeleton = ~s(
       :root{
         --keywordColor: #4ec9b0;
@@ -43,11 +45,13 @@ defmodule Lexer do
         --booleanColor: #569cd6;
         --commentColor: #6a9955;
         --stringColor: #ce9178; /* #ce723c */
+        --bgColor: #1f1f1f;
     }
 
     .body{
         font-family: monospace;
         font-size: 20px;
+        background-color: var(--bgColor);
     }
 
     .comment{
@@ -168,38 +172,42 @@ defmodule Lexer do
     method = ~r<^input|^print|^range|^len|^str|^int|^float|^bool|^list|^type>
 
 
-  defp span_tag_creation(htmlName, {spanContent, type}) do
-    File.write(htmlName, "<span class=\"#{type}\">#{spanContent}</span>")
+  defp span_tag_creation(htmlName, {type, spanContent}) do
+    File.write(htmlName, "<span class=\"#{type}\">#{spanContent}</span>", [:append])
+  end # can be an arrow function in a map
+
+  {spanContent, type}
+
+  # [head | tail] = Regex.split(regex, string, trim: true, include_captures: true) # this be what matches regex and makes it into head and tail
+
+  defp string_traversal(string, res), do: do_string_traversal(string, [])
+
+  defp do_string_traversal("", res), do: Enum.reverse(res)
+  defp do_string_traversal(string, res) do
+    cond do
+      [head | tail] = Regex.split(comment, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "comment"} | res])
+      [head | tail] = Regex.split(variable, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "variable"} | res])
+      [head | tail] = Regex.split(boolean, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "boolean"} | res])
+      [head | tail] = Regex.split(number, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "number"} | res])
+      [head | tail] = Regex.split(string, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "string"} | res])
+      [head | tail] = Regex.split(arithmetic_op, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "arithmetic_op"} | res])
+      [head | tail] = Regex.split(assignment_op, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "assignment_op"} | res])
+      [head | tail] = Regex.split(comparison_op, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "comparison_op"} | res])
+      [head | tail] = Regex.split(logical_op, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "logical_op"} | res])
+      [head | tail] = Regex.split(membership_op, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "membership_op"} | res])
+      [head | tail] = Regex.split(identity_op, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "identity_op"} | res])
+      [head | tail] = Regex.split(bitwise_op, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "bitwise_op"} | res])
+      [head | tail] = Regex.split(whitespace, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "whitespace"} | res])
+      [head | tail] = Regex.split(endline, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "endline"} | res])
+      [head | tail] = Regex.split(tab, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "tab"} | res])
+      [head | tail] = Regex.split(parenthesis, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "parenthesis"} | res])
+      [head | tail] = Regex.split(bracket, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "bracket"} | res])
+      [head | tail] = Regex.split(curly, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "curly_bracket"} | res])
+      [head | tail] = Regex.split(comma, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "comma"} | res])
+      [head | tail] = Regex.split(colon, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "colon"} | res])
+      [head | tail] = Regex.split(keyword, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "keyword"} | res])
+      [head | tail] = Regex.split(method, string, trim: true, include_captures: true) -> do_string_traversal(tail, [{head, "method"} | res])
+      true -> do_string_traversal(tail, [{head, "Invalid Syntax"} | res]) # this has to be checked if the rest of the cond works
+    end
   end
-
-    #   defp string_traversal(string, res), do: do_string_traversal(string, [])
-
-  # defp do_string_traversal([], res), do: Enum.reverse(res)
-  # defp do_string_traversal([head | tail], res) do
-  #   cond do
-  #     head =~ comment -> do_string_traversal(tail, [{head, "comment"} | res])
-  #     head =~ variable -> do_string_traversal(tail, [{head, "variable"} | res])
-  #     head =~ boolean -> do_string_traversal(tail, [{head, "boolean"} | res])
-  #     head =~ number -> do_string_traversal(tail, [{head, "number"} | res])
-  #     head =~ string -> do_string_traversal(tail, [{head, "string"} | res])
-  #     head =~ arithmetic_op -> do_string_traversal(tail, [{head, "arithmetic_op"} | res])
-  #     head =~ assignment_op -> do_string_traversal(tail, [{head, "assignment_op"} | res])
-  #     head =~ comparison_op -> do_string_traversal(tail, [{head, "comparison_op"} | res])
-  #     head =~ logical_op -> do_string_traversal(tail, [{head, "logical_op"} | res])
-  #     head =~ membership_op -> do_string_traversal(tail, [{head, "membership_op"} | res])
-  #     head =~ identity_op -> do_string_traversal(tail, [{head, "identity_op"} | res])
-  #     head =~ bitwise_op -> do_string_traversal(tail, [{head, "bitwise_op"} | res])
-  #     head =~ whitespace -> do_string_traversal(tail, [{head, "whitespace"} | res])
-  #     head =~ endline -> do_string_traversal(tail, [{head, "endline"} | res])
-  #     head =~ tab -> do_string_traversal(tail, [{head, "tab"} | res])
-  #     head =~ parenthesis -> do_string_traversal(tail, [{head, "parenthesis"} | res])
-  #     head =~ bracket -> do_string_traversal(tail, [{head, "bracket"} | res])
-  #     head =~ curly_bracket -> do_string_traversal(tail, [{head, "curly_bracket"} | res])
-  #     head =~ comma -> do_string_traversal(tail, [{head, "comma"} | res])
-  #     head =~ colon -> do_string_traversal(tail, [{head, "colon"} | res])
-  #     head =~ keyword -> do_string_traversal(tail, [{head, "keyword"} | res])
-  #     head =~ method -> do_string_traversal(tail, [{head, "method"} | res])
-  #     true -> do_string_traversal(tail, [{head, "Invalid Syntax"} | res])
-  #   end
-  # end
 end
