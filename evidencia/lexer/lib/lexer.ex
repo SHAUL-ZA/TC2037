@@ -29,6 +29,118 @@ defmodule Lexer do
 
   end
 
+  def css_creation(cssName) do
+    cssSkeleton = ~s(
+      :root{
+        --keywordColor: #4ec9b0;
+        --methodColor: #dcdcaa;
+        --curlyBracketColor: #da70d6;
+        --parenthesisColor: #179fdb;
+        --bracketColor: #ffd710;
+        --numberColor: #b5c989;
+        --variableColor: #9cdcf0;
+        --arithmeticOpColor: #d4d4d4;
+        --booleanColor: #569cd6;
+        --commentColor: #6a9955;
+        --stringColor: #ce9178; /* #ce723c */
+    }
+
+    .body{
+        font-family: monospace;
+        font-size: 20px;
+    }
+
+    .comment{
+        color: var(--commentColor);
+    }
+
+    .variable{
+        color: var(--variableColor);
+    }
+
+    .boolean{
+        color: var(--booleanColor);
+    }
+
+    .number{
+        color: var(--numberColor);
+    }
+
+    .string{
+        color: var(--stringColor);
+    }
+
+    .arithmetic_op{
+        color: var(--arithmeticOpColor);
+    }
+
+    .assignment_op{
+        color: var(--arithmeticOpColor);
+    }
+
+    .comparison_op{
+        color: var(--arithmeticOpColor);
+    }
+
+    .logical_op{
+        color: var(--booleanColor);
+    }
+
+    .membership_op{
+        color: var(--curlyBracketColor);
+
+    }
+
+    .identity_op{
+        color: var(--curlyBracketColor);
+
+    }
+
+    .bitwise_op{
+        color: var(--arithmeticOpColor);
+    }
+
+    .endline{
+        color: var(--stringColor);
+    }
+
+    .tab{
+        color: var(--stringColor);
+    }
+
+    .parenthesis{
+        color: var(--parenthesisColor);
+    }
+
+    .bracket{
+        color: var(--bracketColor);
+    }
+
+    .curly_bracket{
+        color: var(--curlyBracketColor);
+    }
+
+    .comma{
+        color: var(--arithmeticOpColor);
+    }
+
+    .colon{
+        color: var(--arithmeticOpColor);
+    }
+
+    .keyword{
+        color: var(--keywordColor);
+    }
+
+    .method{
+        color: var(--methodColor);
+    }
+    )
+
+    File.write(cssName, cssSkeleton)
+
+  end
+
 
 
   defp marker_line(string) do
