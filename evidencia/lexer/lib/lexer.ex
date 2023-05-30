@@ -2,7 +2,6 @@ defmodule Lexer do
   @moduledoc """
   Documentation for `Lexer`.
   """
-
   def marker(in_filename, out_filename) do
     data = in_filname
     |> File.stream!()
@@ -147,7 +146,7 @@ defmodule Lexer do
 
 
 
-  defp marker_line(string) do
+  defp marker_line(str) do
     comment = ~r|^#[^\n]+|
     variable = ~r|^[a-zA-Z_]\w*|
     boolean = ~r<^True|^False>
@@ -170,7 +169,7 @@ defmodule Lexer do
     colon = ~r<^\:>
     keyword = ~r<^def|^del|^None|^as|^assert|^break|^class|^continue|^for|^from|^global|^if|^elif|^else|^except|^finally|^import|^lambda|^nonlocal|^pass|^raise|^return|^try|^while|^with|^yield>
     method = ~r<^input|^print|^range|^len|^str|^int|^float|^bool|^list|^type>
-
+  end
 
   defp span_tag_creation(htmlName, {type, spanContent}) do
     File.write(htmlName, "<span class=\"#{type}\">#{spanContent}</span>", [:append])
