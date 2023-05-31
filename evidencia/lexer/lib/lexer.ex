@@ -3,14 +3,14 @@ defmodule Lexer do
   Documentation for `Lexer`.
   """
   def marker(in_filename, out_filename) do
-    File.mkdir("../Web")
-    html_creation("../Web/highlighter.html")
-    css_creation("../Web/highlighter.css")
-
-    data = in_filname
+    data = in_filename
     |> File.stream!()
     |> Stream.map(&marker_line/1)
     |> Enum.join("")
+
+    File.mkdir("../Web")
+    html_creation("../Web/highlighter.html")
+    css_creation("../Web/highlighter.css")
   end
 
   defp html_creation(htmlName) do
@@ -26,8 +26,8 @@ defmodule Lexer do
 
     File.write(htmlName, htmlSkeleton)
     File.write(htmlName, "\n\t\t</pre>\n\t</body>\n</html>", [:append])
-
   end
+
 
   defp css_creation(cssName) do
     cssSkeleton = ~s(
@@ -136,11 +136,8 @@ defmodule Lexer do
 
     .method{
         color: var(--methodColor);
-    }
-    )
-
+    })
     File.write(cssName, cssSkeleton)
-
   end
 
   defp marker_line(str) do
@@ -168,28 +165,28 @@ defmodule Lexer do
     method = ~r<^input|^print|^range|^len|^str|^int|^float|^bool|^list|^type>
 
     cond do
-      [head | tail] = Regex.split(comment, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{comment}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(variable, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{variable}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(boolean, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{boolean}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(number, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{number}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(string, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{string}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(arithmetic_op, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{arithmetic_op}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(assignment_op, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{assignment_op}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(comparison_op, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{comparison_op}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(logical_op, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{logical_op}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(membership_op, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{membership_op}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(identity_op, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{identity_op}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(bitwise_op, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{bitwise_op}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(whitespace, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{whitespace}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(endline, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{endline}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(tab, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{tab}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(parenthesis, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{parenthesis}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(bracket, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{bracket}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(curly, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{curly}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(comma, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{comma}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(colon, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{colon}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(keyword, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{keyword}\">#{head}</span>", [:append])
-      [head | tail] = Regex.split(method, string, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{method}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(comment, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{comment}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(variable, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{variable}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(boolean, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{boolean}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(number, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{number}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(string, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{str}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(arithmetic_op, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{arithmetic_op}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(assignment_op, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{assignment_op}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(comparison_op, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{comparison_op}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(logical_op, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{logical_op}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(membership_op, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{membership_op}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(identity_op, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{identity_op}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(bitwise_op, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{bitwise_op}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(whitespace, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{whitespace}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(endline, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{endline}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(tab, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{tab}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(parenthesis, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{parenthesis}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(bracket, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{bracket}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(curly_bracket, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{curly}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(comma, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{comma}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(colon, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{colon}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(keyword, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{keyword}\">#{head}</span>", [:append])
+      [head | tail] = Regex.split(method, str, trim: true, include_captures: true) -> File.write("../Web/highlighter.html", "<span class=\"#{method}\">#{head}</span>", [:append])
       true -> File.write("../Web/highlighter.html", "<span class=\"#{"Syntax Error"}\">#{head}</span>", [:append])
     end
   end
