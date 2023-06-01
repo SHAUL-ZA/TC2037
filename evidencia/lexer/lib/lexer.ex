@@ -30,7 +30,7 @@ defmodule Lexer do
 
 
   defp css_creation(cssName) do
-    cssSkeleton = ~s(
+    cssSkeleton = ~s<
       :root{
         --keywordColor: #4ec9b0;
         --methodColor: #dcdcaa;
@@ -136,7 +136,7 @@ defmodule Lexer do
 
     .method{
         color: var(--methodColor);
-    })
+    }>
     File.write(cssName, cssSkeleton)
   end
 
