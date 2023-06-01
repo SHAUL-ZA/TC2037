@@ -1,3 +1,6 @@
+This code is a syntax highlighter made by:
+    Pablo Bolio Pradilla - A01782428
+    Shaul Zayat Askenazi - A01783240
 defmodule Lexer do
     @moduledoc """
     Documentation for `Lexer`.
