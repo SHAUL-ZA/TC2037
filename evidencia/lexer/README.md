@@ -25,3 +25,36 @@ In conclusion, a syntax highlighter promotes optimal code development, enhances 
 <hr>
 
 ## **Instructions**
+In order to run this code, there are some prerequisites you must fulfill:
+- version: "0.1.0": meaning you must be running the version 0.1.0 of this elixir project
+- elixir: "~> 1.14": meaning you must be using an elixir version greater than 1.14
+
+Once that is fulfilled, to run this project, you must use this specific command on your CLI:
+- `iex -S mix`
+
+After that, the Interactive Elixir Shell is entered, once there you have to input this command:
+- `Lexer.marker("test_file_location", "<html_name.html>")`
+
+Now, the test files are located in this path:
+- `test/Python_test_files/`
+
+From there you have an extremely simple test file to showcase a syntax error that can be caught by our code or you can go to a directory containing projects from an open source repository:
+- The test file: `testError.py`
+- The open source repository: `From_github/`
+
+Within the _From_Github_ path, there are 3 test files, each one of them is a project from an open source repository, the files are:
+- `test1.py`
+- `test2.py`
+- `test3.py`
+
+So the different paths you can use to test the code are:
+- `test/Python_test_files/testError.py`
+- `test/Python_test_files/From_github/test1.py`
+- `test/Python_test_files/From_github/test2.py`
+- `test/Python_test_files/From_github/test3.py`
+
+And the name of the html file can be anything you want, for example:
+- `example.html`
+
+So the command you would input in the Interactive Elixir Shell would be:
+- `Lexer.marker("test/Python_test_files/testError.py", "example.html")`
