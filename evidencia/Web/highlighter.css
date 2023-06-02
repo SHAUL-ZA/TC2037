@@ -1,0 +1,69 @@
+
+        :root{
+          --keywordColor: #4ec9b0;
+          --methodColor: #dcdcaa;
+          --curlyBracketColor: #da70d6;
+          --parenthesisColor: #179fdb;
+          --bracketColor: #ffd710;
+          --numberColor: #b5c989;
+          --variableColor: #9cdcf0;
+          --arithmeticOpColor: #d4d4d4;
+          --booleanColor: #569cd6;
+          --commentColor: #6a9955;
+          --stringColor: #ce9178; /* #ce723c */
+          --bgColor: #1f1f1f;
+          --errorColor: rgba(249, 68, 73, 0.2);
+      }
+
+      body{
+          color: #FFFFFF;
+          font-family: monospace;
+          font-size: 20px;
+          background-color: var(--bgColor);
+      }
+
+      .comment{ color: var(--commentColor); }
+
+      .variable{ color: var(--variableColor); }
+
+      .boolean{ color: var(--booleanColor); }
+
+      .number{ color: var(--numberColor); }
+
+      .string{ color: var(--stringColor); }
+
+      .arithmetic_op{ color: var(--arithmeticOpColor); }
+
+      .assignment_op{ color: var(--arithmeticOpColor); }
+
+      .comparison_op{ color: var(--arithmeticOpColor); }
+
+      .logical_op{ color: var(--booleanColor); }
+
+      .membership_op{ color: var(--curlyBracketColor);  }
+
+      .identity_op{ color: var(--curlyBracketColor); }
+
+      .bitwise_op{ color: var(--arithmeticOpColor); }
+
+      .endline{ color: var(--stringColor); }
+
+      .tab{ color: var(--stringColor); }
+
+      .parenthesis{ color: var(--parenthesisColor); }
+
+      .bracket{ color: var(--bracketColor); }
+
+      .curly_bracket{ color: var(--curlyBracketColor); }
+
+      .comma{ color: var(--arithmeticOpColor); }
+
+      .colon{ color: var(--arithmeticOpColor); }
+
+      .keyword{ color: var(--keywordColor); }
+
+      .method{ color: var(--methodColor); }
+
+      .attribute_method{ color: var(--methodColor); }
+
+      .error{ background-color: var(--errorColor); }
