@@ -5,10 +5,20 @@ defmodule Lexer do
     @moduledoc """
     Documentation for `Lexer`.
 
-    This first function (marker) is the one
-    that will be called from the main file,
-    the way it works is that it will create
-    a new html file in a new directory called
+    ## Authors
+
+    Pablo Bolio Pradilla - A01782428
+
+    Shaul Zayat Askenazi - A01783240
+
+    Contains code for a syntax highlighter.
+    The only public function is marker, which
+    expects a path to a python file and a name
+    for the output html file.
+    """
+
+    @doc """
+    Creates a new html file in a new directory called
     Web, then it will read the file that was
     passed as an argument and recursively
     write spans for it to be propetly highlighted.
@@ -204,18 +214,18 @@ defmodule Lexer do
      {:string, ~r<^"[^"]*"|^'[^']*'>}, # regex that detects strings
      {:keyword, ~r<(^def|^del|^None|^as|^assert|^break|^class|^continue|^for|^from|^global|^if|^elif|^else|^except|^finally|^import|^lambda|^nonlocal|^pass|^raise|^return|^try|^while|^with|^yield)\b>}, # regex that detects keywords
      {:method, ~r<(^input|^print|^range|^len|^str|^int|^float|^bool|^list|^type)\b>}, # regex that detects methods)
-     #{:attribute_method, ~r<\.[a-zA-Z_]\w*>},
+     {:attribute_method, ~r<^\.[a-zA-Z_]\w*>},
      {:membership_op, ~r<(^in|^not in)\b>}, # regex that detects membership operators
      {:identity_op, ~r<(^is|^is not)\b>}, # regex that detects identity operators
      {:logical_op, ~r<(^and|^or|^not)\b>}, # regex that detects logical operators
      {:boolean, ~r<(^True|^False)\b>}, # regex that detects booleans
+     {:parenthesis, ~r[^\(|^\)]}, # regex that detects parenthesis
      {:number, ~r|^[+-]?\d+(\.\d+)?|}, # regex that detects numbers
      {:arithmetic_op, ~r<^\*\*|^\/\/|^\+|^\-|^\*|^\/|^\%>}, # regex that detects arithmetic operators
      {:assignment_op, ~r<^\=|^\*\*\=|^\/\/\=|^\+\=|^\-\=|^\*\=|^\/\=|^\%\=>}, # regex that detects assignment operators
      {:comparison_op, ~r[^\=\=|^\!\=|^\>\=|^\<\=|^\>|^\<]}, # regex that detects comparison operators
      {:bitwise_op, ~r[^\||^\&|^\^|^\~|^\>\>|^\<\<]}, # regex that detects bitwise operators
      {:whitespace, ~r|^\s+|}, # regex that detects whitespaces, tabs and enlines
-     {:parenthesis, ~r[^\(|^\)]}, # regex that detects parenthesis
      {:bracket, ~r<^\[|^\]>}, # regex that detects brackets
      {:curly_bracket, ~r<^\{|^\}>}, # regex that detects curly brackets
      {:comma, ~r<^\,>}, # regex that detects commas
