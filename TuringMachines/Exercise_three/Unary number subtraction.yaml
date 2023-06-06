@@ -1,0 +1,36 @@
+name: Unary number subtraction
+source code: |
+  input: '1111-11'
+  blank: ' '
+  start state: q0
+  table:
+    q0:
+      '1': R
+      '-': {R: 'q1'}
+      ' ': {R: 'invalid'}
+    q1:
+      '1': R
+      ' ': {L: 'q2'}
+    q2:
+      '1': {write: ' ', L: 'q3'}
+      '-': {write: ' ', L: 'ok'}
+    q3:
+      '1': L
+      '-': {L: 'q4'}
+    q4:
+      '1': L
+      ' ': {R: 'q5'}
+    q5:
+      '1': {write: ' ', R: 'q0'}
+    ok:
+    invalid:
+    
+positions:
+  q0: {x: 363.94, y: 381.93, fixed: false}
+  q1: {x: 240.41, y: 306.82, fixed: false}
+  q2: {x: 262.72, y: 161.22, fixed: false}
+  q3: {x: 385.66, y: 77.68, fixed: false}
+  q4: {x: 518.7, y: 140.68, fixed: false}
+  q5: {x: 480.6, y: 285.59, fixed: false}
+  ok: {x: 392.3, y: 212.7, fixed: false}
+  invalid: {x: 496.21, y: 435.23, fixed: false}
