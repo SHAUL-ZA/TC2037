@@ -1,0 +1,41 @@
+name: n(010)
+source code: |
+  input: '001100'
+  blank: ' '
+  start state: start
+  table:
+    start:
+      '0': {write: 'x', R: 'find_1'}
+      '1': {R: 'invalid'}
+      'y': {write: 'y', R: 'find_end'}
+      'x': R
+    find_1:
+      ['0', 'y']: R
+      '1': {write: 'y', R: 'find_x'}
+      [' ', 'z']: {R: 'invalid'}
+    find_x:
+      'y': L
+      ['1', 'z']: R
+      '0': {write: 'z', R: 'find_z'}
+      'x': {R: 'start'}
+    find_z:
+      ['0', '1']: R
+      ' ': {write: ' ', L: 'retro'}
+    retro:
+      ['1', 'z', 'y', 'x', '0']: L
+      ' ': {write: ' ', R: 'start'}
+    find_end:
+      ['x', 'y', 'z']: R
+      ['0', '1']: {R: 'invalid'}
+      ' ': {L: 'ok'}
+    ok:
+    invalid:
+positions:
+  start: {x: 102.08, y: 283.57}
+  find_1: {x: 480.19, y: 263.35}
+  find_x: {x: 257.31, y: 207.05}
+  find_z: {x: 671.6, y: 89.28}
+  retro: {x: 136.31, y: 108.2}
+  find_end: {x: 275.12, y: 436.33}
+  ok: {x: 142.33, y: 467.12}
+  invalid: {x: 543.38, y: 377.8}

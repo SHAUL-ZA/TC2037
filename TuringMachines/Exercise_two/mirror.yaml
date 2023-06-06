@@ -1,0 +1,42 @@
+name: mirror
+source code: |-
+  input: '001100'
+  blank: ' '
+  start state: start
+
+  table:
+    start:
+      '1': {write: ' ', R: 'find1'}
+      '0': {write: ' ', R: 'find0'}
+      ' ': {write: ' ', R: 'ok'}
+    find1:
+      '1': R
+      '0': R
+      ' ': {L: 'back1'}
+    find0:
+      '1': R
+      '0': R
+      ' ': {L: 'back0'}
+    back1:
+      '1': {write: ' ', L: 'retro'} 
+      '0': {R: 'invalid'}
+      ' ': {R: 'invalid'}
+    back0:
+      '0': {write: ' ', L: 'retro'} 
+      '1': {R: 'invalid'}
+      ' ': {R: 'invalid'}
+    retro:
+      '1': L
+      '0': L
+      ' ': {R: 'start'}
+    ok:
+    invalid:
+positions:
+  start: {x: 489.57, y: 101.24}
+  find1: {x: 514.55, y: 251.57, fixed: false}
+  find0: {x: 341.45, y: 90.19, fixed: false}
+  back1: {x: 424.28, y: 364.68, fixed: false}
+  back0: {x: 257.09, y: 210, fixed: false}
+  retro: {x: 399.57, y: 221.15, fixed: false}
+  ok: {x: 612.2, y: 174.89, fixed: false}
+  invalid: {x: 279.88, y: 354.43, fixed: false}
