@@ -43,7 +43,7 @@ This program was executed on an Intel *i7-1750H* with the following specificatio
 
 ### Execution
  To run this project, you must use this specific command on your CLI:
-- `iex prime.exs`
+- `iex primes.exs`
 
 After that, the Interactive Elixir Shell is entered, once there you have to input this command:
 - `Hw.prime_sum(<start>, <finish>, <threads>)`
