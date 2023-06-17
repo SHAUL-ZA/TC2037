@@ -60,7 +60,7 @@ So the command you would input in the Interactive Elixir Shell would be:
 - `Lexer.marker("test/Python_test_files/testError.py", "example.html")`
 
 ## **Instructions V2.0**
-
+poner instrucciones aqui
 
 ## **Runs**
 
@@ -84,6 +84,16 @@ If the number of files exceeds the number of processor threads, it will have to 
 
 
 <hr>
+
+## **Results**
+
+In version 1.0, execution was performed by passing a path as a parameter that contained the folder and file to be processed. In version 2.0, only the folder path containing all the files is passed as a parameter, and each file is assigned to an available thread.
+
+To simulate the test where everything runs on a single thread, the scripts from the 20 test files were consolidated into a single script so that this single file could be assigned to a single thread and the execution time could be measured.
+
+Typically, parallel processing is expected to be more efficient as it divides a large task into smaller tasks. However, in this scenario, the execution time is observed to be twice as long as the single-threaded test. There could be multiple factors contributing to this observation, such as unknown input file sizes, as mentioned in algorithmic complexity, or the fact that one file is larger than another, causing threads to finish at different times. Additionally, if the number of files exceeds the number of threads that can run simultaneously, the system's scheduler will allocate available threads and wait for others to finish tasks before assigning them a file to process. It is worth mentioning that thread execution is not solely dedicated to the program, as the computer utilizes them for other operational tasks.
+
+Overall, the performance of parallel execution depends on various factors, such as file sizes, thread availability, and the nature of the workload. It is essential to consider these factors and optimize the parallelization approach accordingly to achieve better execution times.
 
 - ## commands 
 
