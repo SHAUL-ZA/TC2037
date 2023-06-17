@@ -1,0 +1,94 @@
+
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Lexer</title>
+            <link rel="stylesheet" href="highlighter.css">
+          </head>
+          <body>
+            <pre><span class=keyword>import</span><span class=whitespace> </span><span class=variable>random</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=comment># Function to roll a 6-sided die</span><span class=whitespace>
+</span><span class=keyword>def</span><span class=whitespace> </span><span class=variable>roll_die</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=keyword>return</span><span class=whitespace> </span><span class=variable>random</span><span class=attribute_method>.randint</span><span class=parenthesis>(</span><span class=number>1</span><span class=comma>,</span><span class=whitespace> </span><span class=number>6</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=comment># Function to move the player to a new position</span><span class=whitespace>
+</span><span class=keyword>def</span><span class=whitespace> </span><span class=variable>move_player</span><span class=parenthesis>(</span><span class=variable>player</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>steps</span><span class=parenthesis>)</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=variable>new_position</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>player</span><span class=whitespace> </span><span class=arithmetic_op>+</span><span class=whitespace> </span><span class=variable>steps</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=keyword>return</span><span class=whitespace> </span><span class=variable>new_position</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=comment># Function to check if the player has won</span><span class=whitespace>
+</span><span class=keyword>def</span><span class=whitespace> </span><span class=variable>has_won</span><span class=parenthesis>(</span><span class=variable>player</span><span class=parenthesis>)</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=keyword>return</span><span class=whitespace> </span><span class=variable>player</span><span class=whitespace> </span><span class=comparison_op>>=</span><span class=whitespace> </span><span class=number>100</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=comment># Board with snakes and ladders</span><span class=whitespace>
+</span><span class=variable>board</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=curly_bracket>{</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>4</span><span class=colon>:</span><span class=whitespace> </span><span class=number>14</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>9</span><span class=colon>:</span><span class=whitespace> </span><span class=number>31</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>17</span><span class=colon>:</span><span class=whitespace> </span><span class=number>7</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>20</span><span class=colon>:</span><span class=whitespace> </span><span class=number>38</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>28</span><span class=colon>:</span><span class=whitespace> </span><span class=number>84</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>40</span><span class=colon>:</span><span class=whitespace> </span><span class=number>59</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>51</span><span class=colon>:</span><span class=whitespace> </span><span class=number>67</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>54</span><span class=colon>:</span><span class=whitespace> </span><span class=number>34</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>62</span><span class=colon>:</span><span class=whitespace> </span><span class=number>19</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>63</span><span class=colon>:</span><span class=whitespace> </span><span class=number>81</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>64</span><span class=colon>:</span><span class=whitespace> </span><span class=number>60</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>71</span><span class=colon>:</span><span class=whitespace> </span><span class=number>91</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>87</span><span class=colon>:</span><span class=whitespace> </span><span class=number>24</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>93</span><span class=colon>:</span><span class=whitespace> </span><span class=number>73</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>95</span><span class=colon>:</span><span class=whitespace> </span><span class=number>75</span><span class=comma>,</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=number>99</span><span class=colon>:</span><span class=whitespace> </span><span class=number>78</span><span class=whitespace>
+</span><span class=curly_bracket>}</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=comment># Initial positions of the players</span><span class=whitespace>
+</span><span class=variable>player1</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=number>0</span><span class=whitespace>
+</span><span class=variable>player2</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=number>0</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=comment># Main game loop</span><span class=whitespace>
+</span><span class=keyword>while</span><span class=whitespace> </span><span class=boolean>True</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=comment># Player 1's turn</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Player 1, it's your turn."</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=method>input</span><span class=parenthesis>(</span><span class=string>"Press Enter to roll the die..."</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=variable>roll</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>roll_die</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"You rolled a"</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>roll</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=variable>player1</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>move_player</span><span class=parenthesis>(</span><span class=variable>player1</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>roll</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=comment># Check if Player 1 landed on a snake or ladder</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=keyword>if</span><span class=whitespace> </span><span class=variable>player1</span><span class=whitespace> </span><span class=membership_op>in</span><span class=whitespace> </span><span class=variable>board</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=variable>new_position</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>board</span><span class=bracket>[</span><span class=variable>player1</span><span class=bracket>]</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=keyword>if</span><span class=whitespace> </span><span class=variable>new_position</span><span class=whitespace> </span><span class=comparison_op>></span><span class=whitespace> </span><span class=variable>player1</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>            </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Ladder! You advance to position"</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>new_position</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=keyword>else</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>            </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Snake! You slide down to position"</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>new_position</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=variable>player1</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>new_position</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=comment># Check if Player 1 has won</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=keyword>if</span><span class=whitespace> </span><span class=variable>has_won</span><span class=parenthesis>(</span><span class=variable>player1</span><span class=parenthesis>)</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Congratulations! Player 1 has won the game."</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=keyword>break</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=comment># Player 2's turn</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Player 2, it's your turn."</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=method>input</span><span class=parenthesis>(</span><span class=string>"Press Enter to roll the die..."</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=variable>roll</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>roll_die</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"You rolled a"</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>roll</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=variable>player2</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>move_player</span><span class=parenthesis>(</span><span class=variable>player2</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>roll</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=comment># Check if Player 2 landed on a snake or ladder</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=keyword>if</span><span class=whitespace> </span><span class=variable>player2</span><span class=whitespace> </span><span class=membership_op>in</span><span class=whitespace> </span><span class=variable>board</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=variable>new_position</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>board</span><span class=bracket>[</span><span class=variable>player2</span><span class=bracket>]</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=keyword>if</span><span class=whitespace> </span><span class=variable>new_position</span><span class=whitespace> </span><span class=comparison_op>></span><span class=whitespace> </span><span class=variable>player2</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>            </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Ladder! You advance to position"</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>new_position</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=keyword>else</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>            </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Snake! You slide down to position"</span><span class=comma>,</span><span class=whitespace> </span><span class=variable>new_position</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=variable>player2</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>new_position</span><span class=whitespace>
+</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=comment># Check if Player 2 has won</span><span class=whitespace>
+</span><span class=whitespace>    </span><span class=keyword>if</span><span class=whitespace> </span><span class=variable>has_won</span><span class=parenthesis>(</span><span class=variable>player2</span><span class=parenthesis>)</span><span class=colon>:</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Congratulations! Player 2 has won the game."</span><span class=parenthesis>)</span><span class=whitespace>
+</span><span class=whitespace>        </span><span class=keyword>break</span><span class=whitespace>
+</span>
+		</pre>
+	</body>
+</html>

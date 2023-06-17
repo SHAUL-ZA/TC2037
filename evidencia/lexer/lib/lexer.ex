@@ -38,13 +38,28 @@ defmodule Lexer do
       css_creation("../Web/highlighter.css")
     end
 
+    # Funcion renombrada de la primera version
+    def single_marker(in_filename, out_filename) do
+      File.mkdir("../Web")
+      html_path = ~s(../Web/#{out_filename})
+      html_creation(html_path)
+
+      in_filename
+      |> File.stream!
+      |> Enum.each(&do_marker_line(&1, html_path))
+
+      File.write(html_path, "\n\t\t</pre>\n\t</body>\n</html>", [:append])
+      css_creation("../Web/highlighter.css")
+    end
+
+    # Funcion que recibe un directorio y crea un archivo html por cada archivo .py que encuentre por medio de hilos para que se ejecuten en paralelo
     def markers(directory) do
       IO.puts("Main thread starting")
       files = directory <> "/*.py" # gets all the files in the directory that end with .py
       |> Path.wildcard() # gets the path of each file
       |> Enum.with_index(fn in_filename, index -> {in_filename, "example#{index+1}.html"} end) # creates a tuple with the input file name and the output file name
       |> Enum.map(&Task.async(fn -> marker(&1) end)) # creates a task for each tuple
-      |> Enum.map(&Task.await(&1)) # waits for each task to finish
+      |> Enum.map(&Task.await(&1, :infinity)) # waits for each task to finish
     end
 
 
