@@ -82,14 +82,18 @@ If the number of files exceeds the number of processor threads, it will have to 
 | -----------  | ----------- | ----------- |
 | 5            |    10.5738  |    0.47     |
 
+
 <hr>
 
-## commands 
+- ## commands 
 
-V1.0
+- V1.0
 
-```Lexer.single_marker("test/Python_test_files/All_tests/all.py", "all.html"```
 
-V2.0
+- ```Lexer.single_marker("test/Python_test_files/All_tests/all.py", "all.html"```
 
-```Lexer.markers("test/Python_test_files/From_github")```
+
+- V2.0
+
+
+- ```Lexer.markers("test/Python_test_files/From_github")```
