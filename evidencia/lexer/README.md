@@ -58,3 +58,28 @@ And the name of the html file can be anything you want, for example:
 
 So the command you would input in the Interactive Elixir Shell would be:
 - `Lexer.marker("test/Python_test_files/testError.py", "example.html")`
+
+## **Instructions V2.0**
+
+
+## **Runs**
+
+### **V1.0**
+
+|Run#          | Time(s)/Average|Speedup|  
+| -----------  | ----------- | ----------- |
+| 5            |     4.9766  | 1.0         |
+
+
+<br>
+
+### **V2.0**
+
+- For each file a new thread is created.
+If the number of files exceeds the number of processor threads, it will have to wait for a running thread to finish processing the remaining file.
+
+|Run#          | Time(s)/Average|Speedup|
+| -----------  | ----------- | ----------- |
+| 5            |    10.5738  |    0.47     |
+
+<hr>
