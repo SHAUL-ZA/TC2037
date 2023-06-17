@@ -112,44 +112,4 @@
 </span><span class=whitespace>
 </span><span class=comment># Create menu items</span><span class=whitespace>
 </span><span class=variable>item1</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>MenuItem</span><span class=parenthesis>(</span><span class=string>"Spaghetti Bolognese"</span><span class=comma>,</span><span class=whitespace> </span><span class=number>12.99</span><span class=comma>,</span><span class=whitespace> </span><span class=bracket>[</span><span class=string>"Pasta"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Ground Beef"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Tomato Sauce"</span><span class=bracket>]</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>item2</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>MenuItem</span><span class=parenthesis>(</span><span class=string>"Caesar Salad"</span><span class=comma>,</span><span class=whitespace> </span><span class=number>8.99</span><span class=comma>,</span><span class=whitespace> </span><span class=bracket>[</span><span class=string>"Lettuce"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Croutons"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Parmesan Cheese"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Caesar Dressing"</span><span class=bracket>]</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>item3</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>MenuItem</span><span class=parenthesis>(</span><span class=string>"Cheeseburger"</span><span class=comma>,</span><span class=whitespace> </span><span class=number>9.99</span><span class=comma>,</span><span class=whitespace> </span><span class=bracket>[</span><span class=string>"Beef Patty"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Cheese"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Lettuce"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Tomato"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Onion"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Pickles"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Bun"</span><span class=bracket>]</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Add menu items to the restaurant's menu</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.add_menu_item</span><span class=parenthesis>(</span><span class=variable>item1</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.add_menu_item</span><span class=parenthesis>(</span><span class=variable>item2</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.add_menu_item</span><span class=parenthesis>(</span><span class=variable>item3</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Display the menu</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.display_menu</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Place orders</span><span class=whitespace>
-</span><span class=variable>order1</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>Order</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>order1</span><span class=attribute_method>.add_item</span><span class=parenthesis>(</span><span class=variable>item1</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>order1</span><span class=attribute_method>.add_item</span><span class=parenthesis>(</span><span class=variable>item2</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.place_order</span><span class=parenthesis>(</span><span class=variable>order1</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=variable>order2</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>Order</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>order2</span><span class=attribute_method>.add_item</span><span class=parenthesis>(</span><span class=variable>item3</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.place_order</span><span class=parenthesis>(</span><span class=variable>order2</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Display the orders</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.display_orders</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Remove an order</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.remove_order</span><span class=parenthesis>(</span><span class=variable>order1</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Display the updated orders</span><span class=whitespace>
-</span><span class=variable>restaurant</span><span class=attribute_method>.display_orders</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Calculate total revenue</span><span class=whitespace>
-</span><span class=variable>total_revenue</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>restaurant</span><span class=attribute_method>.get_total_revenue</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=method>print</span><span class=parenthesis>(</span><span class=variable>f</span><span class=string>"Total Revenue: ${total_revenue}"</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Get the most ordered item</span><span class=whitespace>
-</span><span class=variable>most_ordered_item</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>restaurant</span><span class=attribute_method>.get_most_ordered_item</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=method>print</span><span class=parenthesis>(</span><span class=variable>f</span><span class=string>"Most Ordered Item: {most_ordered_item}"</span><span class=parenthesis>)</span><span class=whitespace>
-</span>
-		</pre>
-	</body>
-</html>
+</span><span class=variable>item2</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>MenuItem</span><span class=parenthesis>(</span><span class=string>"Caesar Salad"</span><span class=comma>,</span><span class=whitespace> </span><span class=number>8.99</span><span class=comma>,</span><span class=whitespace> </span><span class=bracket>[</span><span class=string>"Lettuce"</span><span class=comma>,</span><span class=whitespace> </span><span class=string>"Croutons"</span>

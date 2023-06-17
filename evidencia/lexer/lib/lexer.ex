@@ -18,6 +18,8 @@ defmodule Lexer do
     """
 
     @doc """
+    Documentation for `single_marker`.
+
     Creates a new html file in a new directory called
     Web, then it will read the file that was
     passed as an argument and recursively
@@ -25,20 +27,6 @@ defmodule Lexer do
     After this the html is closed and the css file
     is created.
     """
-    def marker({in_filename, out_filename}) do
-      File.mkdir("../Web")
-      html_path = ~s(../Web/#{out_filename})
-      html_creation(html_path)
-
-      in_filename
-      |> File.stream!
-      |> Enum.each(&do_marker_line(&1, html_path))
-
-      File.write(html_path, "\n\t\t</pre>\n\t</body>\n</html>", [:append])
-      css_creation("../Web/highlighter.css")
-    end
-
-    # Funcion renombrada de la primera version
     def single_marker(in_filename, out_filename) do
       File.mkdir("../Web")
       html_path = ~s(../Web/#{out_filename})
@@ -52,6 +40,33 @@ defmodule Lexer do
       css_creation("../Web/highlighter.css")
     end
 
+    # This function is the same as the one above,
+    # but it will be used for the markers function
+
+    def marker({in_filename, out_filename}) do
+      File.mkdir("../Web")
+      html_path = ~s(../Web/#{out_filename})
+      html_creation(html_path)
+
+      in_filename
+      |> File.stream!
+      |> Enum.each(&do_marker_line(&1, html_path))
+
+      File.write(html_path, "\n\t\t</pre>\n\t</body>\n</html>", [:append])
+      css_creation("../Web/highlighter.css")
+    end
+
+    @doc """
+    Documentation for `single_marker`.
+
+    Creates new html files in a new directory called
+    Web, then it will read all the files in the directory
+    FromGithub/ and pass them as an argument to recursively
+    write spans for it to be propetly highlighted.
+    After this the html is closed and the css file
+    is created.
+    """
+
     # Funcion que recibe un directorio y crea un archivo html por cada archivo .py que encuentre por medio de hilos para que se ejecuten en paralelo
     def markers(directory) do
       IO.puts("Main thread starting")
@@ -63,14 +78,12 @@ defmodule Lexer do
     end
 
 
-    @doc """
-    Documentation for `html_creation`.
+    # Documentation for `html_creation`.
 
-    This function creates the skeleton
-    of the html file but doesn't close
-    it in order to fill it with the
-    python code.
-    """
+    # This function creates the skeleton
+    # of the html file but doesn't close
+    # it in order to fill it with the
+    # python code.
     defp html_creation(htmlName) do
       htmlSkeleton = ~s(
         <!DOCTYPE html>
@@ -85,11 +98,10 @@ defmodule Lexer do
       File.write(htmlName, htmlSkeleton)
     end
 
-    @doc """
-    Documentation for `css_creation`.
 
-    This function creates the css file itself.
-    """
+    # Documentation for `css_creation`.
+
+    # This function creates the css file itself.
     defp css_creation(cssName) do
       cssSkeleton = ~s|
         :root{
@@ -163,19 +175,19 @@ defmodule Lexer do
       File.write(cssName, cssSkeleton)
     end
 
-    @doc """
-    Documentation for `do_marker_line`.
 
-    This function receives a certain string,
-    that in this case will be given by the
-    external file through a stream in the
-    function that merges it all (marker),
-    and it will pipe a regex check to see
-    if it matches any of the tokens, if it
-    does, it will call the create_span function.
-    If it doesn't, it will write a span tag
-    with the error class and the unmatched string.
-    """
+    # Documentation for `do_marker_line`.
+
+    # This function receives a certain string,
+    # that in this case will be given by the
+    # external file through a stream in the
+    # function that merges it all (marker),
+    # and it will pipe a regex check to see
+    # if it matches any of the tokens, if it
+    # does, it will call the create_span function.
+    # If it doesn't, it will write a span tag
+    # with the error class and the unmatched string.
+
     defp do_marker_line(str, out_file) do
         reg_check(str)
         |> case do
@@ -184,19 +196,18 @@ defmodule Lexer do
         end
     end
 
-    @doc """
-    Documentation for `create_span`.
+    # Documentation for `create_span`.
 
-    This function receives a token, a regex,
-    a string and the output file name, it will
-    split the string using the regex.split() method
-    and pipe it to a case, if the list has only
-    a head part and not a tail, then it will
-    write a span tag with the last token class
-    that was found and the head part of the list.
-    If it has a tail, it will the recursive function
-    that makes everything fall into place.
-    """
+    # This function receives a token, a regex,
+    # a string and the output file name, it will
+    # split the string using the regex.split() method
+    # and pipe it to a case, if the list has only
+    # a head part and not a tail, then it will
+    # write a span tag with the last token class
+    # that was found and the head part of the list.
+    # If it has a tail, it will the recursive function
+    # that makes everything fall into place.
+
     defp create_span(token, regex, str, out_file) do
         Regex.split(regex, str, trim: true, include_captures: true)
         |>  case do
@@ -205,35 +216,32 @@ defmodule Lexer do
         end
     end
 
-    @doc """
-    Documentation for `write_and_recurse`.
+    # Documentation for `write_and_recurse`.
 
-    This function receives a token, a head, a tail
-    and the output file name, with that, it will
-    write a span tag with the token class and the
-    head part of the list, and then it will call
-    the do_marker_line function with the tail part
-    acting as the string and keeping the output file
-    name, so it recursively writes on the html file
-    until the given string is empty.
-    """
+    # This function receives a token, a head, a tail
+    # and the output file name, with that, it will
+    # write a span tag with the token class and the
+    # head part of the list, and then it will call
+    # the do_marker_line function with the tail part
+    # acting as the string and keeping the output file
+    # name, so it recursively writes on the html file
+    # until the given string is empty.
     defp write_and_recurse(token, head, tail, out_file) do
         File.write(out_file, ~s(<span class=#{token}>#{head}</span>), [:append])
         do_marker_line(tail, out_file)
     end
 
-    @doc """
-    Documentation for `reg_check`.
+    # Documentation for `reg_check`.
 
-    This function receives a string and creates a list
-    of tuples with the token name and the regex that
-    will be used to check if the string matches any of
-    the tokens, if it does, it will return a tuple with
-    the token name and the regex, if it doesn't, it will
-    return nil, this is all achieved using the Enum.find
-    method and an anonymous function that pipes the string
-    to a Regex.match?() method.
-    """
+    # This function receives a string and creates a list
+    # of tuples with the token name and the regex that
+    # will be used to check if the string matches any of
+    # the tokens, if it does, it will return a tuple with
+    # the token name and the regex, if it doesn't, it will
+    # return nil, this is all achieved using the Enum.find
+    # method and an anonymous function that pipes the string
+    # to a Regex.match?() method.
+
     defp reg_check(str) do
     [{:comment, ~r|^#[^\n]+\|^#\s*|}, # regex that detects comments
      {:string, ~r<^"[^"]*"|^'[^']*'>}, # regex that detects strings
@@ -245,7 +253,7 @@ defmodule Lexer do
      {:logical_op, ~r<(^and|^or|^not)\b>}, # regex that detects logical operators
      {:boolean, ~r<(^True|^False)\b>}, # regex that detects booleans
      {:parenthesis, ~r[^\(|^\)]}, # regex that detects parenthesis
-     {:number, ~r|^[+-]?\d+(\.\d+)?|}, # regex that detects numbers
+     {:number, ~r|^([\+-]{0,1}\d+(\.\d+){0,1}(e[\+-]{0,1}\d+){0,1})|}, # regex that detects numbers
      {:arithmetic_op, ~r<^\*\*|^\/\/|^\+|^\-|^\*|^\/|^\%>}, # regex that detects arithmetic operators
      {:assignment_op, ~r<^\=|^\*\*\=|^\/\/\=|^\+\=|^\-\=|^\*\=|^\/\=|^\%\=>}, # regex that detects assignment operators
      {:comparison_op, ~r[^\=\=|^\!\=|^\>\=|^\<\=|^\>|^\<]}, # regex that detects comparison operators

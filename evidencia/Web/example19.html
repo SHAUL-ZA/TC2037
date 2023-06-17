@@ -112,25 +112,4 @@
 </span><span class=whitespace>    </span><span class=variable>dealer</span><span class=attribute_method>.display_hand</span><span class=parenthesis>(</span><span class=variable>show_all_cards</span><span class=assignment_op>=</span><span class=boolean>True</span><span class=parenthesis>)</span><span class=whitespace>
 </span><span class=whitespace>    </span><span class=keyword>while</span><span class=whitespace> </span><span class=variable>dealer</span><span class=attribute_method>.get_hand_value</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace> </span><span class=comparison_op><</span><span class=whitespace> </span><span class=number>17</span><span class=colon>:</span><span class=whitespace>
 </span><span class=whitespace>        </span><span class=variable>dealer</span><span class=attribute_method>.draw_card</span><span class=parenthesis>(</span><span class=variable>deck</span><span class=attribute_method>.deal_card</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>        </span><span class=variable>dealer</span><span class=attribute_method>.display_hand</span><span class=parenthesis>(</span><span class=variable>show_all_cards</span><span class=assignment_op>=</span><span class=boolean>True</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>        </span><span class=keyword>if</span><span class=whitespace> </span><span class=variable>dealer</span><span class=attribute_method>.get_hand_value</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace> </span><span class=comparison_op>></span><span class=whitespace> </span><span class=number>21</span><span class=colon>:</span><span class=whitespace>
-</span><span class=whitespace>            </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Dealer busts! You win."</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>            </span><span class=keyword>return</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=whitespace>    </span><span class=comment># Compare hands and determine the winner</span><span class=whitespace>
-</span><span class=whitespace>    </span><span class=variable>player_value</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>player</span><span class=attribute_method>.get_hand_value</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>    </span><span class=variable>dealer_value</span><span class=whitespace> </span><span class=assignment_op>=</span><span class=whitespace> </span><span class=variable>dealer</span><span class=attribute_method>.get_hand_value</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=whitespace>    </span><span class=keyword>if</span><span class=whitespace> </span><span class=variable>player_value</span><span class=whitespace> </span><span class=comparison_op>></span><span class=whitespace> </span><span class=variable>dealer_value</span><span class=colon>:</span><span class=whitespace>
-</span><span class=whitespace>        </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"You win!"</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>    </span><span class=keyword>elif</span><span class=whitespace> </span><span class=variable>player_value</span><span class=whitespace> </span><span class=comparison_op><</span><span class=whitespace> </span><span class=variable>dealer_value</span><span class=colon>:</span><span class=whitespace>
-</span><span class=whitespace>        </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"Dealer wins!"</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>    </span><span class=keyword>else</span><span class=colon>:</span><span class=whitespace>
-</span><span class=whitespace>        </span><span class=method>print</span><span class=parenthesis>(</span><span class=string>"It's a tie!"</span><span class=parenthesis>)</span><span class=whitespace>
-</span><span class=whitespace>
-</span><span class=comment># Start the game</span><span class=whitespace>
-</span><span class=variable>play_blackjack</span><span class=parenthesis>(</span><span class=parenthesis>)</span><span class=whitespace>
-</span>
-		</pre>
-	</body>
-</html>
+</span><span class=whitespace>        </span><span class=variable>dealer</span><span class=attribute_method>.display_hand</span><span class=parenthesis>(</span><span class=variable>show_all_cards</span><span class=assignment_op>=</span><span class=boolean>True</span>
